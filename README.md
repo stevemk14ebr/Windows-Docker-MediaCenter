@@ -33,3 +33,10 @@ The openvpn container is setup in HOST 'network_mode' meaning it binds directly 
 Since all the containers run inside the vpn container and are accessible via 10.0.75.2 exposing them to the public outside of the dev machine is hard. If we were an external client trying to connect to the host's ip nothing would resolve, since the connection would be to the wan interface rather than the hyper-v interface. To fix this i've used NGROK which acts a a middle man in the cloud that forwards packets/requests from the some local interface (10.0.75.2) to whoever is connecting. However ngrok limits the number of domains you have on the lowest paid tier so i wrote ngrok_router as a work around. This lets give me a mapping from docker container service -> randomly assigned ngrok domain.
 
 And finally guacamole is used to give remote access to this whole system. Leaving you with a system that can automatically acquire new media over vpn, stream it publicly via plex, provide access to services via domain names, provide client portal for requests, and allow remote access to the entire machine. All of it works behind the most restrictive nat and everything is clientless running completely through the browser. 
+
+# Setup
+Clone all the docker-compose files. Each service is in its own folder with its own docker-compose.yml. Run the container with `docker-compose up serviceName` or `docker-compose up -d serviceName` to run without console output (use powershell).
+
+## VPN
+I use private internet access, their default configs are trash. Instead use mine which fixes frequent disconnects and auto-reconnects on wifi shutdown. I've based this on the TCP-Strong config provided here: https://www.privateinternetaccess.com/pages/client-support/ under "advanced openvpn ssl restrictive configurations". Fill in your information where appropriate, you will need to modify the vpn.cert_auth file to have your login on line 1 and password on line 2. Also provide your crl.pem.
+
