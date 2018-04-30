@@ -1,0 +1,48 @@
+authtoken: YOUR AUTH TOKEN
+tunnels:
+  plex:
+    proto: http
+    addr: 32400
+    inspect: false
+    subdomain: YOUR DOMAIN NAME
+    auth: YOUR AUTH
+  tunnel_viewer:
+    proto: http
+    addr: 3000
+    inspect: false
+    auth: YOUR AUTH
+    subdomain: YOUR SECOND DOMAIN NAME
+  sonarr:
+    proto: http
+    addr: 10.0.75.2:8989
+    inspect: false
+    auth: YOUR AUTH
+  radarr:
+    proto: http
+    addr: 10.0.75.2:7878
+    inspect: false
+    auth: YOUR AUTH
+  jackett:
+    proto: http
+    addr: 10.0.75.2:9117
+    inspect: false
+    auth: YOUR AUTH
+  transmission:
+    proto: http
+    addr: 10.0.75.2:9091
+    inspect: false
+    auth: YOUR AUTH
+    host_header: localhost
+  ombi:
+    proto: http
+    addr: 10.0.75.2:3579
+    inspect: false
+    auth: YOUR AUTH
+  guacamole:
+    proto: http
+    addr: 8088
+    inspect: false
+    auth: YOUR AUTH
+    
+  
+    
