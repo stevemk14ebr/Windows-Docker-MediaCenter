@@ -1,5 +1,5 @@
 # Windows-Docker-MediaCenter
-Linux based docker containers to provide remote access and serve media. With windows workarounds.
+Linux based docker containers to provide remote access and serve media. With windows workarounds (should work fine on linux and maybe mac too but untested)
 
 # TLDR;
 If this is you then keep reading:
