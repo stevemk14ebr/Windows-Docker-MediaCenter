@@ -68,3 +68,6 @@ Example: manual.py -i C:\Movies -a
 
 ## Ngrok
 Set one of your ngrok domains to plex and the other to my ngrok_router. Now launch ngrok_router and the ngrok.exe. Go to the domain name of my ngrok router to see the public facing domain names for all the containers and enjoy ![heimdall](https://i.imgur.com/W23WG8v.png). 
+
+## Guacamole
+Ctrl+alt+shift brings up menu if you can't see it at any point. login using default credentials. Add a new vnc connection to tiger vnc use 10.0.75.1 under hostname and port 5900 by default.
