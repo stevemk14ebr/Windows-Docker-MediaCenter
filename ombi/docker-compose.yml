@@ -1,0 +1,11 @@
+version: "3.5"
+
+services:
+  ombi:
+    image: linuxserver/ombi
+    container_name: ombi
+    environment:
+      - TZ='America/New_York'
+    volumes:
+      - ./config:/config
+    network_mode: container:openvpn

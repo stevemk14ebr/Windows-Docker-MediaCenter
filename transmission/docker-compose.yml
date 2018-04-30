@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      - TZ='America/New_York'
+    volumes:
+      - YOUR LOCAL HOST PATH:/downloads
+      - ./config:/config
+      - ./watch:/watch
+    network_mode: container:openvpn

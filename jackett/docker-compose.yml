@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    environment:
+      - TZ='America/New_York'
+    volumes:
+      - ./config:/config
+      - HOST PATH TO SOME RANDOM TMP:/downloads
+    network_mode: container:openvpn

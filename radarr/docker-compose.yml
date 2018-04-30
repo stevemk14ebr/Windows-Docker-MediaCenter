@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - TZ='America/New_York'
+    volumes:
+      - ./config:/config
+      - HOST PATH FOR TEMP DOWNLOADS:/downloads
+      - HOST PATH FOR FINAL DOWNLOADS:/movies
+    network_mode: container:openvpn
