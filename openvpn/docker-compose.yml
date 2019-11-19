@@ -10,6 +10,8 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     network_mode: "host"
+    dns:
+      - 1.1.1.1
     cap_add:
       - NET_ADMIN
       
