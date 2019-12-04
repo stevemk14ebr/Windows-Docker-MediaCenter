@@ -1,0 +1,101 @@
+version: "3"
+
+services:
+
+  vpn:
+    build: ./openvpn
+    container_name: vpn
+    command: Netherlands.ovpn
+    volumes:
+      - ./openvpn:/etc/openvpn
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    networks:
+      - secure_net
+    dns:
+      - 1.1.1.1
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+
+  # downloader
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      - TZ='America/New_York'
+      - PUID=1000
+      - PGID=1000
+    depends_on:
+      - vpn
+    volumes:
+      - YOURLOCALHOSTPATH:/downloads
+      - ./transmission/config:/config
+      - ./transmission/watch:/watch
+    network_mode: service:vpn
+
+  torproxy:
+    image: dperson/torproxy
+    container_name: torproxy
+    environment:
+      - TZ='America/New_York'
+      - PUID=1000
+      - PGID=1000
+    depends_on:
+      - vpn
+    restart: unless-stopped
+    network_mode: service:vpn
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - TZ='America/New_York'
+      - PUID=1000
+      - PGID=1000
+    restart: unless-stopped
+    depends_on:
+      - vpn
+      - jackett
+      - transmission
+    volumes:
+      - ./sonarr/config:/config
+      - YOURLOCALHOSTPATH:/downloads
+      - YOURLOCALHOSTPATH:/tv
+    network_mode: service:vpn
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - TZ='America/New_York'
+      - PUID=1000
+      - PGID=1000
+    restart: unless-stopped
+    depends_on:
+      - vpn
+      - jackett
+      - transmission
+    volumes:
+      - ./radarr/config:/config
+      - YOURLOCALHOSTPATH:/downloads
+      - YOURLOCALHOSTPATH2:/movies
+    network_mode: service:vpn
+
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    environment:
+      - TZ='America/New_York'
+      - PUID=1000
+      - PGID=1000
+    restart: unless-stopped
+    depends_on:
+      - vpn
+    volumes:
+      - ./jackett/config:/config
+      - /tmp:/downloads
+    network_mode: service:vpn
+
+networks:
+  secure_net:
