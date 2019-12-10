@@ -1,5 +1,5 @@
 # Windows-Docker-MediaCenter
-Linux based docker containers to provide remote access and serve media. With windows workarounds (should work fine on linux and maybe mac too but untested)
+Linux based docker containers to provide remote access and serve media. With windows workarounds (will work on linux) (maybe on mac too but untested)
 
 # TLDR;
 If this is you then keep reading:
@@ -38,7 +38,7 @@ Since all the containers run inside the vpn container and are accessible via 10.
 And finally guacamole is used to give remote access to this whole system. Leaving you with a system that can automatically acquire new media over vpn, stream it publicly via plex, provide access to services via domain names, provide client portal for requests, and allow remote access to the entire machine. All of it works behind the most restrictive nat and everything is clientless running completely through the browser. 
 
 # Setup
-Clone all the docker-compose files. Each service is in its own folder with its own docker-compose.yml. Run the container with `docker-compose up serviceName` or `docker-compose up -d serviceName` to run without console output (use powershell). Go install plex, install tiger vnc, get my ngrok_router from my other repo, and buy the cheapest ngrok tier $5 and reserve two domain names.
+Clone all the docker-compose files. Each service is in its own folder with its own docker-compose.yml. Run the container with `docker-compose up serviceName` or `docker-compose up -d serviceName` to run without console output (use powershell). Go install plex, install tiger vnc, get my ngrok_router from my other repo, and buy the cheapest ngrok tier $5 and reserve two domain names. I also provided a root level docker-compose.yml that can be used to start all services from one config, and an associated start.sh, this configuration is intended to be used on linux while the service per folder is for windows.
 
 ## VPN
 I use private internet access, their default configs are trash. Instead use mine which fixes frequent disconnects and auto-reconnects on wifi shutdown. I've based this on the TCP-Strong config provided here: https://www.privateinternetaccess.com/pages/client-support/ under "advanced openvpn ssl restrictive configurations". Fill in your information where appropriate, you will need to modify the vpn.cert_auth file to have your login on line 1 and password on line 2. Also provide your crl.pem. Start this container and make sure it can connect properly. If you are on a restrictive network and dns resolution is failing in the container check that your dns is set to what your host machine uses, some networks prevent using common 'alternative' dns servers like googles popular 8.8.8.8. 
