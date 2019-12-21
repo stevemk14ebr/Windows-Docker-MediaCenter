@@ -22,7 +22,7 @@ If this is you then keep reading:
 - ngrok: public routing to docker containers
 - tiger vnc: gucamole vnc endpoint
 - ngrok_router: a custom webserver i wrote to bypass ngrok restrictions
-- sickbear_mp4_converter: convert acquired media to streamable mp4 (plex has encoding issues sometimes, runs manually for now)
+- sickbeard_mp4_converter: convert acquired media to streamable mp4 (plex has encoding issues sometimes, runs manually for now). You can also use this to normalize audio, encode media metadata, embbed (and acquire) subtitles, etc. Use my gist for good default configs (https://gist.github.com/stevemk14ebr/bc39a6d44d4e744c589c57732f83a5be)
 
 # Architectural Overview
 Docker on windows runs all containers inside of hyper-v container. This makes routing to services kind of weird, and a little hard. The typical way of accessing a docker container by using the ip you get from docker inspect doesn't work. Instead you must user the ip address of the hyper-v bridge adapter
